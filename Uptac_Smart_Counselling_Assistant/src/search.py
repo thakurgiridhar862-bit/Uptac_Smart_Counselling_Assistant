@@ -38,7 +38,7 @@ def clg_search(df):
     print("-" * 50)
     print("Total Matching Records : ", len(search_imp))
     if qu_search.empty:
-        print("College not found")
+        print("No matching records found for the given filters.")
 
     else:
         print(search_imp)
