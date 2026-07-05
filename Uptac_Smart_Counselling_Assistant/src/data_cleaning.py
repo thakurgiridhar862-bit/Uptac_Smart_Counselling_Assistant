@@ -1,7 +1,5 @@
 import pandas as pd
 
-df = pd.read_csv("Uptac_Smart_Counselling_Assistant/data/raw/uptac_cutoff_2025.csv")
-
 
 def load_data():
     df = pd.read_csv("Uptac_Smart_Counselling_Assistant/data/raw/uptac_cutoff_2025.csv")
@@ -64,11 +62,22 @@ def remove_duplicates(df):
     return df
 
 
+def save_dataset(df):
+
+    df.to_csv(
+        "Uptac_Smart_Counselling_Assistant/data/processed/final_dataset.csv",
+        index=False,
+    )
+
+    print("\nProcessed dataset saved successfully.")
+
+
 def main():
     df = load_data()
     data_overview(df)
     duplicate_analysis(df)
     df = remove_duplicates(df)
+    save_dataset(df)
 
 
 if __name__ == "__main__":
