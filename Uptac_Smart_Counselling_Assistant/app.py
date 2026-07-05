@@ -9,10 +9,11 @@ def load_data():
 
 df = load_data()
 
-st.title("UPTAC Smart Counselling Assistant")
+st.title("🎓 UPTAC Smart Counselling Assistant")
 
 menu = st.sidebar.selectbox(
-    "Choose Feature", ["Home", "College Search", "Rank Predictor", "Choice Filling"]
+    "Choose Feature",
+    ["🏠 Home", "🔍 College Search", "🎯 Rank Predictor", "📝 Choice Filling"],
 )
 
 inst = sorted(df["Institute"].dropna().unique())
@@ -22,16 +23,16 @@ ro = sorted(df["Round"].dropna().unique())
 qu = sorted(df["Quota"].dropna().unique())
 
 
-if menu == "Home":
-    st.header("Home")
+if menu == "🏠 Home":
+    st.header("🏠 Home")
     st.write("This project helps students during UPTAC counselling.")
-    st.write("1. College Search")
-    st.write("2. Rank Predictor")
-    st.write("3. Choice Filling")
+    st.write("1. 🔍 College Search")
+    st.write("2. 🎯 Rank Predictor")
+    st.write("3. 📝 Choice Filling")
 
 
-elif menu == "College Search":
-    st.header("College Search")
+elif menu == "🔍 College Search":
+    st.header("🔍 College Search")
 
     college = st.selectbox("Select College", inst)
     program = st.selectbox("Select Program", prog)
@@ -39,7 +40,7 @@ elif menu == "College Search":
     round = st.selectbox("Select Round", ro)
     quota = st.selectbox("Select Quota", qu)
 
-    if st.button("Search"):
+    if st.button("🔍 Search"):
         result = df[df["Institute"] == college]
         result = result[result["Program"] == program]
         result = result[result["Category"] == category]
@@ -60,16 +61,16 @@ elif menu == "College Search":
 
         result = result.sort_values(by="Closing_Rank").reset_index(drop=True)
 
-        st.write("Total Records :", len(result))
+        st.write("📊 Total Records :", len(result))
 
         if result.empty:
-            st.write("No matching records found.")
+            st.write("❌ No matching records found.")
         else:
             st.dataframe(result)
 
 
-elif menu == "Rank Predictor":
-    st.header("Rank Predictor")
+elif menu == "🎯 Rank Predictor":
+    st.header("🎯 Rank Predictor")
 
     rank = st.number_input("Enter Your Rank", min_value=1, step=1)
     program = st.selectbox("Select Program", prog)
@@ -77,7 +78,7 @@ elif menu == "Rank Predictor":
     round = st.selectbox("Select Round", ro)
     quota = st.selectbox("Select Quota", qu)
 
-    if st.button("Predict"):
+    if st.button("🎯 Predict"):
         result = df[df["Program"] == program]
         result = result[result["Category"] == category]
         result = result[result["Round"] == round]
@@ -104,23 +105,23 @@ elif menu == "Rank Predictor":
         moderate = result[(result["Rank_Gap"] > 5000) & (result["Rank_Gap"] <= 20000)]
         safe = result[result["Rank_Gap"] > 20000]
 
-        st.write("Total Eligible Colleges :", len(result))
+        st.write("📊 Total Eligible Colleges :", len(result))
 
         if result.empty:
-            st.write("No eligible colleges found.")
+            st.write("❌ No eligible colleges found.")
         else:
-            st.write("Dream Colleges")
+            st.write("🌟 Dream Colleges")
             st.dataframe(dream.head(10))
 
-            st.write("Moderate Colleges")
+            st.write("⚖️ Moderate Colleges")
             st.dataframe(moderate.head(10))
 
-            st.write("Safe Colleges")
+            st.write("✅ Safe Colleges")
             st.dataframe(safe.head(10))
 
 
-elif menu == "Choice Filling":
-    st.header("Choice Filling")
+elif menu == "📝 Choice Filling":
+    st.header("📝 Choice Filling")
 
     rank = st.number_input("Enter Your Rank", min_value=1, step=1)
     se_prog = st.multiselect("Select Programs", prog)
@@ -128,9 +129,9 @@ elif menu == "Choice Filling":
     round = st.selectbox("Select Round", ro)
     quota = st.selectbox("Select Quota", qu)
 
-    if st.button("Generate Choice List"):
+    if st.button("📝 Generate Choice List"):
         if len(se_prog) == 0:
-            st.write("Please select at least one program.")
+            st.write("❌ Please select at least one program.")
         else:
             choice_df = df[df["Program"].isin(se_prog)]
             choice_df = choice_df[choice_df["Category"] == category]
@@ -177,9 +178,9 @@ elif menu == "Choice Filling":
                 ]
             ]
 
-            st.write("Total Choices :", len(choice_df))
+            st.write("📊 Total Choices :", len(choice_df))
 
             if choice_df.empty:
-                st.write("No choices found.")
+                st.write("❌ No choices found.")
             else:
                 st.dataframe(choice_df.head(50))
