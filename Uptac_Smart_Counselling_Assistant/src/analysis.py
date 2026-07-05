@@ -82,10 +82,50 @@ def cat_wise_analysis(df):
     )
 
 
+def inst_wise_analysis(df):
+
+    print("\nINSTITUTE WISE ANALYSIS")
+    print("-" * 50)
+
+    inst_count = df["Institute"].value_counts().sort_values(ascending=False)
+
+    print(inst_count.head(10))
+
+    print("\nTotal Institutes :", df["Category"].nunique())
+
+    print("\nHighest Records")
+    print(inst_count.max())
+
+    print("\nLowest Records")
+    print(inst_count.min())
+
+    # graph 2
+    plt.figure(figsize=(12, 8))
+
+    x = inst_count.head(10).values
+    y = inst_count.head(10).index
+
+    plt.barh(y, x)
+
+    plt.title("Top 10 Institutes By Cutoff Records")
+    plt.xlabel("Number of Records")
+    plt.ylabel("Institute")
+
+    for i in range(len(x)):
+        plt.text(x[i] + 2, i, str(x[i]), va="center")
+
+    plt.gca().invert_yaxis()
+
+    plt.tight_layout()
+
+    plt.savefig("Uptac_Smart_Counselling_Assistant/graphs/inst_wise_analysis.png")
+
+
 def main():
     df = load_data()
     round_wise_analysis(df)
     cat_wise_analysis(df)
+    inst_wise_analysis(df)
 
 
 if __name__ == "__main__":
