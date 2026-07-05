@@ -42,6 +42,9 @@ def pred(df):
     result = result.sort_values(by="Closing_Rank", ascending=True).reset_index(
         drop=True
     )
+    dream_res = result[result["Rank_Gap"] <= 5000]
+    mod_res = result[(result["Rank_Gap"] > 5000) & (result["Rank_Gap"] <= 20000)]
+    safe_res = result[result["Rank_Gap"] > 20000]
 
     print("RANK PREDICTION RESULTS")
     print("-" * 50)
@@ -55,7 +58,15 @@ def pred(df):
     if result.empty:
         print("No eligible colleges found for the given rank and filters.")
     else:
-        print(result.head(20))
+        print("DREAM COLLEGES")
+        print("-" * 50)
+        print(dream_res.head(10))
+        print("MODERATE RISK COLLEGES")
+        print("-" * 50)
+        print(mod_res.head(10))
+        print("SAFE RISK COLLEGES")
+        print("-" * 50)
+        print(safe_res.head(10))
 
 
 def main():
