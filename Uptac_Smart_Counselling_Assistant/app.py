@@ -35,14 +35,14 @@ elif menu == "🔍 College Search":
     st.header("🔍 College Search")
 
     college = st.selectbox("Select College", inst)
-    program = st.selectbox("Select Program", prog)
+    program = st.multiselect("Select Program", prog)
     category = st.selectbox("Select Category", cat)
     round = st.selectbox("Select Round", ro)
     quota = st.selectbox("Select Quota", qu)
 
     if st.button("🔍 Search"):
         result = df[df["Institute"] == college]
-        result = result[result["Program"] == program]
+        result = result[result["Program"].isin(program)]
         result = result[result["Category"] == category]
         result = result[result["Round"] == round]
         result = result[result["Quota"] == quota]
