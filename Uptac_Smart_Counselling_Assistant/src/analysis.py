@@ -170,6 +170,21 @@ def cr_analysis(df):
     print(f"Average Closing Rank : {df['Closing_Rank'].mean().round(2)}")
     print(f"Median  Closing Rank : {df['Closing_Rank'].median()}")
 
+    # graph
+    plt.figure(figsize=(10, 6))
+
+    sns.histplot(df["Closing_Rank"], bins=25)
+
+    plt.title("Closing Rank Distribution")
+    plt.xlabel("Closing Rank")
+    plt.ylabel("Number of Students")
+
+    plt.grid(alpha=0.3)
+
+    plt.tight_layout()
+
+    plt.savefig("Uptac_Smart_Counselling_Assistant/graphs/cr_analysis.png")
+
 
 def main():
     df = load_data()
