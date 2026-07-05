@@ -121,11 +121,51 @@ def inst_wise_analysis(df):
     plt.savefig("Uptac_Smart_Counselling_Assistant/graphs/inst_wise_analysis.png")
 
 
+def branch_wise_analysis(df):
+
+    print("\nBRANCH WISE ANALYSIS")
+    print("-" * 50)
+
+    br_count = df["Program"].value_counts().sort_values(ascending=False)
+
+    print(br_count.head(10))
+
+    print("\nTotal Branches :", df["Program"].nunique())
+
+    print("\nHighest Records")
+    print(br_count.max())
+
+    print("\nLowest Records")
+    print(br_count.min())
+
+    # graph 2
+    plt.figure(figsize=(12, 8))
+
+    x = br_count.head(10).values
+    y = br_count.head(10).index
+
+    plt.barh(y, x)
+
+    plt.title("Top 10 Branches By Cutoff Records")
+    plt.xlabel("Number of Records")
+    plt.ylabel("Branch")
+
+    for i in range(len(x)):
+        plt.text(x[i] + 2, i, str(x[i]), va="center")
+
+    plt.gca().invert_yaxis()
+
+    plt.tight_layout()
+
+    plt.savefig("Uptac_Smart_Counselling_Assistant/graphs/branch_wise_analysis.png")
+
+
 def main():
     df = load_data()
     round_wise_analysis(df)
     cat_wise_analysis(df)
     inst_wise_analysis(df)
+    branch_wise_analysis(df)
 
 
 if __name__ == "__main__":
