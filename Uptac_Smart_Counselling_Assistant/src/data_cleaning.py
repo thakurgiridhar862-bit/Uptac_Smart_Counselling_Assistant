@@ -34,9 +34,22 @@ def data_overview(df):
     print(df.describe())
 
 
+def duplicate_analysis(df):
+    print("\nDUPLICATE ANALYSIS")
+    print("-" * 50)
+
+    duplicates = df[df.duplicated()]
+
+    print(f"Total Duplicate Records : {duplicates.shape[0]}")
+
+    print("\nFIRST FIVE DUPLICATE ROWS")
+    print(duplicates.head())
+
+
 def main():
     df = load_data()
     data_overview(df)
+    duplicate_analysis(df)
 
 
 if __name__ == "__main__":
