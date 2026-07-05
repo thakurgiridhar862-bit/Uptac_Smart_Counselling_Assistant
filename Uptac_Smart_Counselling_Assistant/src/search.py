@@ -12,9 +12,13 @@ def clg_search(df):
 
     clg = input("Enter college name : ").strip().lower()
     br = input("Enter Branch You want : ").strip().lower()
+    cat = input("Enter Your Category : ").strip().lower()
     search = df[df["Institute"].str.strip().str.lower().str.contains(clg)]
     br_search = search[search["Program"].str.strip().str.lower().str.contains(br)]
-    search_imp = br_search[
+    cat_search = br_search[
+        br_search["Category"].str.strip().str.lower().str.contains(cat)
+    ]
+    search_imp = cat_search[
         [
             "Institute",
             "Program",
@@ -28,7 +32,7 @@ def clg_search(df):
     print("COLLEGE SEARCH RESULTS")
     print("-" * 50)
     print("Total Matching Records : ", len(search_imp))
-    if br_search.empty:
+    if cat_search.empty:
         print("College not found")
 
     else:
