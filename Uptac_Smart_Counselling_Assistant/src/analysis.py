@@ -160,12 +160,25 @@ def branch_wise_analysis(df):
     plt.savefig("Uptac_Smart_Counselling_Assistant/graphs/branch_wise_analysis.png")
 
 
+def cr_analysis(df):
+
+    print("\nCLOSING RANK ANALYSIS")
+    print("-" * 50)
+
+    print(f"Minimum Closing Rank : {df['Closing_Rank'].min()}")
+    print(f"Maximum Closing Rank : {df['Closing_Rank'].max()}")
+    print(f"Average Closing Rank : {df['Closing_Rank'].mean().round(2)}")
+    print(f"Median  Closing Rank : {df['Closing_Rank'].median()}")
+
+
 def main():
     df = load_data()
     round_wise_analysis(df)
     cat_wise_analysis(df)
     inst_wise_analysis(df)
     branch_wise_analysis(df)
+    cr_analysis(df)
+    print(df[df["Closing_Rank"] == df["Closing_Rank"].max()])
 
 
 if __name__ == "__main__":

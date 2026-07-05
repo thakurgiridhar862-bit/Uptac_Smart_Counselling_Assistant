@@ -104,6 +104,24 @@ def data_summary(df):
     print(df["Quota"].value_counts())
 
 
+def filter_rounds(df):
+
+    print("\nFILTERING DATASET FOR ROUND 1 TO ROUND 4")
+    print("-" * 50)
+
+    print("Before Filtering")
+    print(df["Round"].value_counts().sort_index())
+
+    df = df[df["Round"].isin(["Round 1", "Round 2", "Round 3", "Round 4"])]
+
+    print("\nAfter Filtering")
+    print(df["Round"].value_counts().sort_index())
+
+    df = df.reset_index(drop=True)
+
+    return df
+
+
 def main():
     df = load_data()
     data_overview(df)
@@ -112,6 +130,11 @@ def main():
     save_dataset(df)
     load_final_data()
     data_summary(df)
+    df = filter_rounds(df)
+    df.to_csv(
+        "Uptac_Smart_Counselling_Assistant/data/processed/final_dataset.csv",
+        index=False,
+    )
 
 
 if __name__ == "__main__":
