@@ -72,12 +72,46 @@ def save_dataset(df):
     print("\nProcessed dataset saved successfully.")
 
 
+def load_final_data():
+    df = pd.read_csv(
+        "Uptac_Smart_Counselling_Assistant/data/processed/final_dataset.csv"
+    )
+    return df
+
+
+def data_summary(df):
+    print("\nDATASET SUMMARY")
+    print("-" * 50)
+
+    print(f"Total Institutes : {df['Institute'].nunique()}")
+    print(f"Total Programs   : {df['Program'].nunique()}")
+    print(f"Total Streams    : {df['Stream'].nunique()}")
+    print(f"Total Quotas     : {df['Quota'].nunique()}")
+    print(f"Total Categories : {df['Category'].nunique()}")
+    print(f"Total Seat Types : {df['Seat_Gender'].nunique()}")
+    print(f"Total Rounds     : {df['Round'].nunique()}")
+
+    print("\nROUND WISE RECORDS")
+    print("-" * 50)
+    print(df["Round"].value_counts())
+
+    print("\nCATEGORY WISE RECORDS")
+    print("-" * 50)
+    print(df["Category"].value_counts())
+
+    print("\nQUOTA WISE RECORDS")
+    print("-" * 50)
+    print(df["Quota"].value_counts())
+
+
 def main():
     df = load_data()
     data_overview(df)
     duplicate_analysis(df)
     df = remove_duplicates(df)
     save_dataset(df)
+    load_final_data()
+    data_summary(df)
 
 
 if __name__ == "__main__":
