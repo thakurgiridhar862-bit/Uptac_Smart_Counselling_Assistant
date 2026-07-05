@@ -13,14 +13,16 @@ def clg_search(df):
     clg = input("Enter college name : ").strip().lower()
     br = input("Enter Branch You want : ").strip().lower()
     cat = input("Enter Your Category : ").strip().lower()
-    ro = input("Enter Round (Round 1 - Round 4) : ")
+    ro = input("Enter Round (Round 1 - Round 4) : ").strip().lower()
+    qu = input("Enter Quota (All india / Home state) : ").strip().lower()
     search = df[df["Institute"].str.strip().str.lower().str.contains(clg)]
     br_search = search[search["Program"].str.strip().str.lower().str.contains(br)]
     cat_search = br_search[
         br_search["Category"].str.strip().str.lower().str.contains(cat)
     ]
     ro_search = cat_search[cat_search["Round"].str.strip().str.lower().str.contains(ro)]
-    search_imp = ro_search[
+    qu_search = ro_search[ro_search["Quota"].str.strip().str.lower().str.contains(qu)]
+    search_imp = qu_search[
         [
             "Institute",
             "Program",
@@ -34,7 +36,7 @@ def clg_search(df):
     print("COLLEGE SEARCH RESULTS")
     print("-" * 50)
     print("Total Matching Records : ", len(search_imp))
-    if ro_search.empty:
+    if qu_search.empty:
         print("College not found")
 
     else:
