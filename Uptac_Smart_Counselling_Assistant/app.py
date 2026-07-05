@@ -1,13 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-
-def load_data():
-    df = pd.read_csv("data/processed/final_dataset.csv")
-    return df
-
-
-df = load_data()
+df = pd.read_csv("Uptac_Smart_Counselling_Assistant/data/processed/final_dataset.csv")
 
 st.title("🎓 UPTAC Smart Counselling Assistant")
 
