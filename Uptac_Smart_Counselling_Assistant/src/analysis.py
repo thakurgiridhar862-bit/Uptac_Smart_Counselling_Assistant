@@ -186,6 +186,32 @@ def cr_analysis(df):
     plt.savefig("Uptac_Smart_Counselling_Assistant/graphs/cr_analysis.png")
 
 
+def or_analysis(df):
+
+    print("\nOPENING RANK ANALYSIS")
+    print("-" * 50)
+
+    print(f"Minimum Opening Rank : {df['Opening_Rank'].min()}")
+    print(f"Maximum Opening Rank : {df['Opening_Rank'].max()}")
+    print(f"Average Opening Rank : {df['Opening_Rank'].mean().round(2)}")
+    print(f"Median  Opening Rank : {df['Opening_Rank'].median()}")
+
+    # graph
+    plt.figure(figsize=(10, 6))
+
+    sns.histplot(df["Opening_Rank"], bins=25)
+
+    plt.title("Opening Rank Distribution")
+    plt.xlabel("Opening Rank")
+    plt.ylabel("Number of Students")
+
+    plt.grid(alpha=0.3)
+
+    plt.tight_layout()
+
+    plt.savefig("Uptac_Smart_Counselling_Assistant/graphs/or_analysis.png")
+
+
 def main():
     df = load_data()
     round_wise_analysis(df)
@@ -193,6 +219,7 @@ def main():
     inst_wise_analysis(df)
     branch_wise_analysis(df)
     cr_analysis(df)
+    or_analysis(df)
 
 
 if __name__ == "__main__":
