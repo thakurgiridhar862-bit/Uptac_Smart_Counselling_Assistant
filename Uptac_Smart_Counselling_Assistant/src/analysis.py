@@ -178,7 +178,6 @@ def main():
     inst_wise_analysis(df)
     branch_wise_analysis(df)
     cr_analysis(df)
-    print(df[df["Closing_Rank"] == df["Closing_Rank"].max()])
 
 
 if __name__ == "__main__":
