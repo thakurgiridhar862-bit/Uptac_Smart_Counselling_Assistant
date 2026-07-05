@@ -124,13 +124,13 @@ elif menu == "Choice Filling":
     st.header("Choice Filling Generator")
 
     rank = st.number_input("Enter Your Rank", min_value=1, step=1)
-    program = st.selectbox("Select Preferred Program / Branch", prog)
+    program = st.multiselect("Select Preferred Program / Branch", prog)
     category = st.selectbox("Select Category", cat)
     round_name = st.selectbox("Select Round", ro)
     quota = st.selectbox("Select Quota", qu)
 
     if st.button("Generate Choice Filling List"):
-        choice_df = df[df["Program"] == program]
+        choice_df = df[df["Program"].isin(program)]
         choice_df = choice_df[choice_df["Category"] == category]
         choice_df = choice_df[choice_df["Round"] == round_name]
         choice_df = choice_df[choice_df["Quota"] == quota]

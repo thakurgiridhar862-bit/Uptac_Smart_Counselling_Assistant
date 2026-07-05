@@ -53,12 +53,6 @@ def choice_filling(df):
         print("No choices found for the given rank and filters.")
     else:
         print(choice_df.head(50))
-        choice_df.to_csv(
-            "Uptac_Smart_Counselling_Assistant/outputs/choice_filling_list.csv",
-            index=False,
-        )
-
-        print("Choice filling list saved successfully.")
 
 
 def main():
