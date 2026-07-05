@@ -15,6 +15,11 @@ def pred(df):
     ro = input("Enter Round (Round 1 - Round 4) : ").strip().lower()
     qu = input("Enter  Quota (All india / Home state) : ").strip().lower()
 
+    cat_df = df[df["Category"].str.lower().str.strip().str.contains(cat)]
+    ro_df = cat_df[cat_df["Round"].str.strip().str.lower().str.contains(ro)]
+    qu_df = ro_df[ro_df["Quota"].str.strip().str.lower().str.contains(qu)]
+    el_df = qu_df[(qu_df["Opening_Rank"] <= rank) & (rank <= qu_df["Closing_Rank"])]
+
 
 def main():
     df = load_data()
