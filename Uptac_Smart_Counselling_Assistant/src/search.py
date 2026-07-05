@@ -37,6 +37,10 @@ def clg_search(df):
     print("COLLEGE SEARCH RESULTS")
     print("-" * 50)
     print("Total Matching Records : ", len(search_imp))
+    print(f"Minimum Opening Rank : {search_imp['Opening_Rank'].min()}")
+    print(f"Minimum Closing Rank : {search_imp['Closing_Rank'].min()}")
+    print(f"Maximum Opening Rank : {search_imp['Opening_Rank'].max()}")
+    print(f"Maximum closing Rank : {search_imp['Closing_Rank'].max()}")
     if qu_search.empty:
         print("No matching records found for the given filters.")
 
