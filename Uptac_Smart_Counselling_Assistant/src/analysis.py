@@ -40,7 +40,43 @@ def round_wise_analysis(df):
         ax.bar_label(i, padding=5)
 
     plt.savefig(
-        "Uptac_Smart_COunselling_Assistant/graphs/round_wise_analysis.png",
+        "Uptac_Smart_Counselling_Assistant/graphs/round_wise_analysis.png",
+        dpi=300,
+        bbox_inches="tight",
+    )
+
+
+def cat_wise_analysis(df):
+
+    print("\nCATEGORY WISE ANALYSIS")
+    print("-" * 50)
+
+    cat_count = df["Category"].value_counts().sort_values(ascending=False)
+
+    print(cat_count)
+
+    print("\nTotal Categories :", df["Category"].nunique())
+
+    print("\nHighest Records")
+    print(cat_count.max())
+
+    print("\nLowest Records")
+    print(cat_count.min())
+
+    # graph 2
+    plt.figure(figsize=(12, 5))
+    plt.title("Category Wise Cutoff Records")
+    plt.xlabel("Category")
+    plt.ylabel("Number of records")
+    plt.grid(axis="y", alpha=0.4)
+    x = cat_count.head(10).index
+    y = cat_count.head(10).values
+    ax = sns.barplot(x=x, y=y, palette="viridis")
+    for i in ax.containers:
+        ax.bar_label(i, padding=5)
+
+    plt.savefig(
+        "Uptac_Smart_Counselling_Assistant/graphs/cat_wise_analysis.png",
         dpi=300,
         bbox_inches="tight",
     )
@@ -49,6 +85,7 @@ def round_wise_analysis(df):
 def main():
     df = load_data()
     round_wise_analysis(df)
+    cat_wise_analysis(df)
 
 
 if __name__ == "__main__":
