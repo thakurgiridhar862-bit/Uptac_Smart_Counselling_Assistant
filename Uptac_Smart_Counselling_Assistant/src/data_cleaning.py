@@ -46,10 +46,29 @@ def duplicate_analysis(df):
     print(duplicates.head())
 
 
+def remove_duplicates(df):
+
+    print("\nREMOVING DUPLICATES")
+    print("-" * 50)
+
+    before = df.shape[0]
+
+    df = df.drop_duplicates()
+
+    after = df.shape[0]
+
+    print(f"Rows Before : {before}")
+    print(f"Rows After  : {after}")
+    print(f"Removed     : {before - after}")
+
+    return df
+
+
 def main():
     df = load_data()
     data_overview(df)
     duplicate_analysis(df)
+    df = remove_duplicates(df)
 
 
 if __name__ == "__main__":
