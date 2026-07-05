@@ -8,6 +8,14 @@ def load_data():
     return df
 
 
+def pred(df):
+
+    rank = int(input("Enter your Rank : "))
+    cat = input("Enter Your Category : ").strip().lower()
+    ro = input("Enter Round (Round 1 - Round 4) : ").strip().lower()
+    qu = input("Enter  Quota (All india / Home state) : ").strip().lower()
+
+
 def main():
     df = load_data()
 
