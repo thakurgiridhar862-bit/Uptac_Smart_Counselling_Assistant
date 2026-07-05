@@ -11,9 +11,10 @@ def load_data():
 def clg_search(df):
 
     clg = input("Enter college name : ").strip().lower()
-
+    br = input("Enter Branch You want : ").strip().lower()
     search = df[df["Institute"].str.strip().str.lower().str.contains(clg)]
-    search_imp = search[
+    br_search = search[search["Program"].str.strip().str.lower().str.contains(br)]
+    search_imp = br_search[
         [
             "Institute",
             "Program",
@@ -27,7 +28,7 @@ def clg_search(df):
     print("COLLEGE SEARCH RESULTS")
     print("-" * 50)
     print("Total Matching Records : ", len(search_imp))
-    if search.empty:
+    if br_search.empty:
         print("College not found")
 
     else:
