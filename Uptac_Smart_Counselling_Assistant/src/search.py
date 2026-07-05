@@ -36,19 +36,24 @@ def pred(df):
             "Closing_Rank",
         ]
     ]
-
+    result["rank_gap"] = result["Closing_Rank"] - rank
     result = result.sort_values(by="Closing_Rank", ascending=True).reset_index(
         drop=True
     )
 
     print("RANK PREDICTION RESULTS")
     print("-" * 50)
-    print("Total Eligible Records : ", len(result))
+    print(f"Your Rank        : {rank}")
+    print(f"Your Program     : {program}")
+    print(f"Your Category    : {cat}")
+    print(f"Your Quota       : {qu}")
+    print(f"Your Round       : {ro}")
+    print("Eligible Colleges : ", len(result))
 
     if result.empty:
         print("No eligible colleges found for the given rank and filters.")
     else:
-        print(result)
+        print(result.head(20))
 
 
 def main():
