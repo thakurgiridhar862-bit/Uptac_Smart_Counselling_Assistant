@@ -116,6 +116,9 @@ The project uses historical UPTAC counselling cutoff data after preprocessing an
 -- Uptac_dash_choice.png
 
 ---
+## 🌐 Live Demo
+
+https://uptac-counselling-guider.streamlit.app/
 
 ## 👨‍💻 Author
 
