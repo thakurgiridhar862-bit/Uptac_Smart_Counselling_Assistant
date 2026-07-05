@@ -33,6 +33,7 @@ def clg_search(df):
             "Closing_Rank",
         ]
     ]
+    search_imp = search_imp.sort_values(by="Closing_Rank", ascending=True)
     print("COLLEGE SEARCH RESULTS")
     print("-" * 50)
     print("Total Matching Records : ", len(search_imp))
